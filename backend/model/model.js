@@ -1,4 +1,4 @@
-var model = (function (log4js, dbFile) {
+var model = (function (log4js) {
   var log = log4js.getLogger('model');
 
   var db = null; //TODO choose DB etc

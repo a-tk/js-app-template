@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var log4js = require('log4js');
+var child_process = require('child_process');
 
 log4js.configure({
   appenders: { logfile: {type: 'file', filename: 'logs/app.log'} },
@@ -14,14 +15,19 @@ var log = log4js.getLogger('app');
 
 //configuration per environment
 var environment = process.argv[2] || app.get('env') || 'development';
+child_process.exec('pwd', function(err, stdout, stderr) { //TODO: fix this problem
+  console.log(stdout);
+});
+
 var serverConfig = require('./env.json')[ environment ];
+console.log("using " + JSON.stringify(serverConfig));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var request = require('request');
 var model = require('./model/model.js');
-model = model(log4js, serverConfig.dbFile); //configure action //TODO: determine how to use mongoose
+model = model(log4js); //configure action //TODO: determine how to use mongoose
 model.connect();
 
 /**
