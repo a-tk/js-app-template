@@ -1,7 +1,10 @@
-var express = require('express');
-var path = require('path');
-var log4js = require('log4js');
-var child_process = require('child_process');
+const express = require('express');
+const path = require('path');
+const log4js = require('log4js');
+const child_process = require('child_process');
+const bodyParser = require('body-parser');
+const app = express();
+const log = log4js.getLogger('app');
 
 log4js.configure({
   appenders: { logfile: {type: 'file', filename: 'logs/app.log'} },
@@ -9,32 +12,27 @@ log4js.configure({
 });
 
 
-var bodyParser = require('body-parser');
-var app = express();
-var log = log4js.getLogger('app');
 
 //configuration per environment
-var environment = process.argv[2] || app.get('env') || 'development';
+const environment = process.argv[2] || app.get('env') || 'development';
 child_process.exec('pwd', function(err, stdout, stderr) { //TODO: fix this problem
   console.log(stdout);
 });
 
-var serverConfig = require('./env.json')[ environment ];
+const serverConfig = require('./env.json')[ environment ];
 console.log("using " + JSON.stringify(serverConfig));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var request = require('request');
-var model = require('./model/model.js');
-model = model(log4js); //configure action //TODO: determine how to use mongoose
+const request = require('request');
+const model = require('./model/model.js')(log4js);
 model.connect();
 
 /**
  * set api routes up
  */
-var api = require('./api/api.js');
-api = api(log4js, express, model);
+var api = require('./api/api.js')(log4js, express, model);
 app.use(api);
 
 /**
@@ -75,6 +73,8 @@ app.use(function(err, req, res, next) {
 process.on('SIGINT', function() {
 
   log.info('CTRL C detected, exiting gracefully');
+  //anything to clean up before exiting? Helpful to close
+  //GPIO on raspberry pi
   process.exit();
 });
 
