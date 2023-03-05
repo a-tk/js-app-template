@@ -3,10 +3,10 @@ const model = ((log4js) => {
 
   // const db = null; // TODO choose DB etc
 
-  const initialize = function () {
+  const initialize = () => {
   };
 
-  const connect = function () {
+  const connect = () => {
     initialize();
     log.info('connected');
   };
