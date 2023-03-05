@@ -1,12 +1,12 @@
 {
-  "name": "lwefd",
+  "name": "js-app-template",
   "version": "0.0.0",
   "dependencies": {
   },
   "devDependencies": {
   },
   "appPath": "app",
-  "moduleName": "lwefd",
+  "moduleName": "jas-app-template",
   "overrides": {
   }
 }
