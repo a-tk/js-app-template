@@ -1,6 +1,5 @@
 const express = require('express');
 const log4js = require('log4js');
-const { spawn } = require('child_process');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -13,16 +12,13 @@ log4js.configure({
 
 // configuration per environment
 const environment = process.argv[2] || app.get('env') || 'development';
-spawn('pwd', (err, stdout) => { // TODO: fix this problem
-  if (err) {
-    console.log(err);
-  }
-  console.log(stdout);
-});
 
 const serverConfig = require('./env.json')[environment];
 
-console.log(`using ${JSON.stringify(serverConfig)}`); // TODO
+if (serverConfig === undefined) {
+  log.error('error loading config');
+  process.exit();
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

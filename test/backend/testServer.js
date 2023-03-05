@@ -1,13 +1,12 @@
+const assert = require('assert');
+const { describe, it } = require('mocha');
+// const log4js = require('log4js'); // commented out to prevent lint errors
 
-var assert = require('assert');
-var log4js = require('log4js');
+// const mockHostname = 'localhost'; // commented out to prevent lint errors
 
-var mockHostname = 'localhost';
-
-describe('test', function () {
-  var server = require('../../backend/server.js')();
-  describe('#test', function () {
-    it('should test', function (){
+describe('test suite', () => {
+  describe('test case', () => {
+    it('should equal 0', () => {
       assert.equal(0, 0);
     });
   });

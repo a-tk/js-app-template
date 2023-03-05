@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "startBackend": "node ./backend/server.js",
-    "test": "node ./node_modules/mocha/bin/mocha --recursive test/",
+    "test": "./node_modules/mocha/bin/_mocha --recursive test/",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive test/",
     "lint": "npx eslint \"./**/*.js\""
   },
