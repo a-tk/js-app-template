@@ -20,7 +20,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/backend/server.js"
+            "program": "${workspaceFolder}/node_modules/mocha/bin/mocha",
+            "args": "--recursive ${workspaceFolder}/test/"
         }
     ]
 }

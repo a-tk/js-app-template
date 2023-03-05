@@ -1,6 +1,6 @@
-var api = (function (log4js, express, model, notify) {
-  var log = log4js.getLogger('/api');
-  var api = express.Router();
+const api = ((log4js, express) => {
+  const log = log4js.getLogger('/api');
+  const router = express.Router();
 
   /**
    *  url: /api/url
@@ -8,7 +8,9 @@ var api = (function (log4js, express, model, notify) {
    *  result: result
    *
    */
-  api.get('/api/url', function (req, res, next) {
+  router.get('/api/url', (req, res) => {
+    log.info('api call log');
+    res.send(200); // send ack for the purpose of the template
   });
 
   return api;

@@ -1,17 +1,19 @@
-var model = (function (log4js) {
-  var log = log4js.getLogger('model');
+const model = ((log4js) => {
+  const log = log4js.getLogger('model');
 
-  var db = null; //TODO choose DB etc
+  // const db = null; // TODO choose DB etc
 
-  var connect = function () {
+  const initialize = function () {
   };
 
-  var initialize = function () {
+  const connect = function () {
+    initialize();
+    log.info('connected');
   };
 
   return {
-    connect: connect
-  }
+    connect,
+  };
 });
 
 module.exports = model;
