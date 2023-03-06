@@ -5,23 +5,22 @@
   "private": true,
   "main": "src/server.js",
   "scripts": {
+    "start-dev": "node src/server.js development",
+    "start-prod": "node src/server.js production",
     "test": "./node_modules/mocha/bin/_mocha --recursive test/",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive test/",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --recursive test/",
     "lint": "npx eslint \"./**/*.js\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/a-tk/jas-app-template.git"
+    "url": "git+https://github.com/a-tk/js-app-template.git"
   },
   "dependencies": {
     "body-parser": "~1.20.2",
     "cookie-parser": "~1.4.6",
     "debug": ">=4.3.4",
     "express": "~4.18.2",
-    "log4js": "~6.8.x",
-    "mocha": "~10.2.x",
-    "morgan": ">=1.10.0",
-    "request": ">=2.68.0"
+    "log4js": "~6.8.x"
   },
   "author": "Andre Keys",
   "license": "Apache 2.0",
@@ -32,6 +31,8 @@
   "devDependencies": {
     "eslint": "^8.35.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-plugin-import": "^2.27.5",
+    "istanbul": "^0.4.5",
+    "mocha": "~10.2.x"
   }
 }
