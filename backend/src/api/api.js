@@ -13,7 +13,7 @@ const api = ((log4js, express) => {
     res.send(200); // send ack for the purpose of the template
   });
 
-  return api;
+  return router;
 });
 
 module.exports = api;
